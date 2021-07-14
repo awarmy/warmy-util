@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>extend</title>
+</head>
+<body>
+    <script src="../extend.js"></script>
+    <script>
+        
+        function Person(name){
+            this.name = name;
+        }
+        Person.prototype.constructor= function(name){
+            this.name = name;
+        }
+
+        Person.prototype.getName = function(){
+            return this.name;
+        }
+        function Author(name, books){
+            // Person.call(this, name);
+            Author.superClass && Author.superClass.constructor.call(this, name)
+            this.books = books;
+        }
+        wextend(Author, Person);
+        Author.prototype.getBooks = function(){
+            return this.books;
+        }
+        var a = new Author('Tom','Red Star Over China');
+        console.log(a.getName());
+        console.log(a);
+    </script>
+</body>
+</html>
